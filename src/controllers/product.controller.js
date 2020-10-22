@@ -1,9 +1,8 @@
 const Product = require('../models/Product')
 
 const getAllProducts = async (req, res) => {
-    const products = await Product.paginate({
-        limit: 15
-    })
+    const page = req.query.page || 1
+    const products = await Product.paginate( {}, { limit: 15 , page })
     res.json({ products })
 }
 
